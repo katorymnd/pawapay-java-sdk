@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.katorymnd</groupId>
+    <artifactId>pawapay-java-sdk</artifactId>
+    <version>2.2.0</version>
+    <packaging>jar</packaging>
+    <name>PawaPay Java SDK</name>
+    <description>Official Premium Java SDK by Katorymnd Web Solutions for PawaPay mobile money API integration.</description>
+    <url>https://katorymnd.com/pawapay-payment-sdk/java</url>
+    <organization>
+        <name>Katorymnd Web Solutions</name>
+        <url>https://katorymnd.com</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>katorymnd</id>
+            <name>Kato Raymond</name>
+            <email>support@katorymnd.com</email>
+            <organization>Katorymnd Web Solutions</organization>
+            <organizationUrl>https://katorymnd.com</organizationUrl>
+            <roles>
+                <role>Architect</role>
+                <role>Maintainer</role>
+            </roles>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/katorymnd/pawapay-java-sdk.git</connection>
+        <developerConnection>scm:git:ssh://github.com:katorymnd/pawapay-java-sdk.git</developerConnection>
+        <url>https://github.com/katorymnd/pawapay-java-sdk</url>
+    </scm>
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/katorymnd/pawapay-java-sdk/issues</url>
+    </issueManagement>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <exec.mainClass>com.katorymnd.pawapay.examples.web.Application</exec.mainClass>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.14</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.4.11</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.javalin</groupId>
+            <artifactId>javalin</artifactId>
+            <version>6.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.5.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.12.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>core-rust/target/release</directory>
+                <includes>
+                    <include>*.dll</include> <!-- Windows -->
+                    <include>*.so</include>  <!-- Linux -->
+                    <include>*.dylib</include> <!-- macOS -->
+                </includes>
+                <targetPath>native</targetPath>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                    <excludes>
+                        <!-- This tells Maven to ignore ANY file ending with '2.java' -->
+                        <exclude>**/*2.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <!-- NEW: Automated Rust Build Execution -->
+                    <execution>
+                        <id>cargo-build</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>cargo</executable>
+                            <workingDirectory>${project.basedir}/core-rust</workingDirectory>
+                            <arguments>
+                                <argument>build</argument>
+                                <argument>--release</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>${exec.mainClass}</mainClass>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.fizzed</groupId>
+                <artifactId>fizzed-watcher-maven-plugin</artifactId>
+                <version>1.0.6</version>
+                <configuration>
+                    <watches>
+                        <watch>
+                            <directory>src/main/java</directory>
+                        </watch>
+                        <watch>
+                            <directory>src/main/resources/web/templates</directory>
+                        </watch>
+                    </watches>
+                    <goals>
+                        <goal>clean</goal>
+                        <goal>compile</goal>
+                        <goal>exec:java</goal>
+                    </goals>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

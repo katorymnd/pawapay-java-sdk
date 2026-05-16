@@ -1,0 +1,29 @@
+# Maven / Java Build Output
+target/
+*.class
+*.jar
+*.war
+
+# Rust / Cargo Build Output
+core-rust/target/
+**/*.rs.bk
+
+# Environment Variables & Session Secrets
+.env
+.pawapay-session
+.pawapay-imprint
+
+# Logs & Temporary Execution Files
+logs/
+*.log
+getTree.txt
+test.txt
+
+# IDEs and OS Specifics
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# Strictly ignore the proprietary Rust engine source
+core-rust/
