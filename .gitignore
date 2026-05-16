@@ -27,3 +27,4 @@ test.txt
 
 # Strictly ignore the proprietary Rust engine source
 core-rust/
+core-rust/
