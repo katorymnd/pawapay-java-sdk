@@ -1,6 +1,6 @@
 # PawaPay Java SDK
 
-[![Maven Central](https://img.shields.io/badge/Maven%20Central-2.4.6-blue.svg)](https://central.sonatype.com/)
+[![Maven Central](https://img.shields.io/badge/Maven%20Central-2.6.6-blue.svg)](https://central.sonatype.com/)
 [![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
 [![Java Version](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://openjdk.java.net/)
 
