@@ -1,0 +1,54 @@
+PAWAPAY JAVA SDK LICENSE AGREEMENT
+==================================
+
+Copyright (c) 2026 Katorymnd Web Solutions. All rights reserved.
+
+1. GRANT OF LICENSE
+   Subject to the terms of this Agreement, Katorymnd Web Solutions ("Licensor") 
+   grants you ("Licensee") a non-exclusive, non-transferable, revocable license 
+   to use the PawaPay Java SDK ("Software") solely for the purpose of integrating 
+   with the PawaPay payment platform.
+
+2. RESTRICTIONS
+   The Licensee SHALL NOT, and shall not permit any third party to:
+   
+   a) Reverse engineer, decompile, disassemble, or attempt to derive the source 
+      code or underlying ideas, algorithms, or structures from the Software, 
+      including but not limited to the Java bytecode and native libraries 
+      (DLL, SO, DYLIB).
+      
+   b) Modify, adapt, translate, or create derivative works based on the Software.
+   
+   c) Bypass, disable, or circumvent any security mechanisms, license validation 
+      routines, integrity checks, or usage limits embedded in the Software.
+      
+   d) Use the Software in any manner that results in unauthorized access to 
+      Katorymnd systems or data.
+
+3. INTEGRITY AND TAMPERING
+   The Software contains proprietary security measures designed to protect the 
+   integrity of the payment ecosystem. Any attempt to modify, patch, or bypass 
+   these measures (including but not limited to bytecode manipulation, native 
+   library replacement, or network interception) constitutes a material breach 
+   of this Agreement.
+   
+   Upon detection of such tampering, the Licensor reserves the right to:
+   - Immediately terminate this license.
+   - Disable the Software remotely.
+   - Pursue all available legal remedies for damages incurred.
+
+4. NO WARRANTY
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+   SOFTWARE.
+
+5. GOVERNING LAW
+   This Agreement shall be governed by and construed in accordance with the laws 
+   of the jurisdiction in which Katorymnd Web Solutions is registered, without 
+   regard to its conflict of law provisions.
+
+For licensing inquiries, please contact: support@katorymnd.com
